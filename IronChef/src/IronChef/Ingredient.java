@@ -19,7 +19,7 @@ public class Ingredient {
 	
 	public String toString() {
 		
-		return "You added: " + name + ". \nIt expires on " + expMonth + ", " + expDate + ", " + expYear;
+		return "\nYou added: " + name + ". \nIt expires on " + expMonth + ", " + expDate + ", " + expYear;
 		
 	}
 	
