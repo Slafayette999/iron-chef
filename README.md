@@ -6,7 +6,7 @@ Java application for managing kitchen inventory, ingredients and expiration date
 - Enter expiration month
 - Enter expiration year
 - Store ingredient in an inventory list
-- CLear input fields after adding an ingredient
+- Clear input fields after adding an ingredient
 - Display added ingredients in the console
 
 ## Technologies Used
