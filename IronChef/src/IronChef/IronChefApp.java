@@ -3,8 +3,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
 
 public class IronChefApp extends JFrame implements ActionListener {
@@ -23,7 +23,22 @@ public class IronChefApp extends JFrame implements ActionListener {
 		JScrollPane messagesScroll = new JScrollPane(messages);
 		
 		JButton add = new JButton("Add");
-		JButton clear = new JButton("Clear");
+		
+		String[] inventoryColumns = {"Name", "Exp Month", "Exp Date", "Exp Year"};
+		
+		DefaultTableModel inventoryModel = new DefaultTableModel(inventoryColumns, 0) {
+		@Override
+		public boolean isCellEditable(int row, int column) {
+			return false;
+			}
+		};
+		
+			
+		JTable inventoryTable = new JTable(inventoryModel);
+		
+		
+		
+		JScrollPane inventoryScroll = new JScrollPane(inventoryTable);
 		
 	public IronChefApp() {
 		
@@ -49,7 +64,7 @@ public class IronChefApp extends JFrame implements ActionListener {
 		
 		JPanel centerPanel = new JPanel(new GridLayout(1, 2, 15, 15));
 		JPanel inventoryForm = new JPanel(new GridLayout(5, 2, 10, 10));
-		JPanel liveInventory = new JPanel();
+		JPanel liveInventory = new JPanel(new BorderLayout());
 		JPanel bottomPanel = new JPanel(new BorderLayout(10, 10));
 		JPanel buttons = new JPanel();
 		
@@ -65,13 +80,16 @@ public class IronChefApp extends JFrame implements ActionListener {
 		inventoryForm.add(expYearText);
 		inventoryForm.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		
+		inventoryTable.setAutoCreateRowSorter(true);
+		
+		liveInventory.setBorder(BorderFactory.createTitledBorder("Live Inventory"));
+		liveInventory.add(inventoryScroll, BorderLayout.CENTER);
 		
 		centerPanel.add(inventoryForm);
 		centerPanel.add(liveInventory);
 		centerPanel.setBorder(BorderFactory.createEmptyBorder(10, 15, 10, 10));
 		
 		buttons.add(add);
-		buttons.add(clear);
 		
 		bottomPanel.add(messagesScroll, BorderLayout.CENTER);
 		
@@ -87,7 +105,6 @@ public class IronChefApp extends JFrame implements ActionListener {
 		c.add(bottomPanel, BorderLayout.SOUTH);
 				
 		add.addActionListener(this);
-		clear.addActionListener(this);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
@@ -108,13 +125,9 @@ public class IronChefApp extends JFrame implements ActionListener {
 			
 			addIngredient(ingredientName, expirationMonth, expirationDate, expirationYear);	
 		
-		}
-		else if (e.getSource() == clear) {
-			
 			clearFields();
-			
 		}
-			
+		
 		
 		//System.out.println(inventory);
 		
@@ -125,7 +138,14 @@ public class IronChefApp extends JFrame implements ActionListener {
 			
 		Ingredient newIngredient = new Ingredient(ingredientName, expirationMonth, expirationDate, expirationYear);
 		
-		inventory.add(newIngredient);	
+		inventory.add(newIngredient);
+		
+		inventoryModel.addRow(new Object[] { 
+				ingredientName,
+				expirationMonth,
+				expirationDate,
+				expirationYear
+		});
 	}
 		
 	
@@ -148,9 +168,7 @@ public class IronChefApp extends JFrame implements ActionListener {
 		    //recipe
 			//ingredient
 			//inventory
-		
-		//first lets allow for ingredients to be added to inventory
-		
+			
 	}
 	
 }
