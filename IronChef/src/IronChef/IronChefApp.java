@@ -10,46 +10,87 @@ import javax.swing.*;
 public class IronChefApp extends JFrame implements ActionListener {
 	
 		ArrayList<Ingredient> inventory;
-	
-		JLabel name = new JLabel("Name of ingredient: ");
+		
+		Container c;
+		
 		JTextField nameBox = new JTextField(15);
-	
-		JLabel exMonthLabel = new JLabel("Enter Expiration Month: ");
 		JTextField expMonthText = new JTextField(15);
-		
-		JLabel exDateLabel = new JLabel("Enter Expiration Date: ");
 		JTextField expDateText = new JTextField(15);
-		
-		JLabel exDateYear = new JLabel("Enter Expiration Year: ");
 		JTextField expYearText = new JTextField(15);
+		
+		JTextArea messages = new JTextArea(8, 30);
+		
+		JScrollPane messagesScroll = new JScrollPane(messages);
 		
 		JButton add = new JButton("Add");
 		JButton clear = new JButton("Clear");
 		
-				
-		Container c;
-		
 	public IronChefApp() {
-		 inventory = new ArrayList<Ingredient>();
-		c = getContentPane();
-		setSize(600, 300);
-		c.setLayout(new FlowLayout());
-		c.setVisible(true);
 		
-		c.add(name);
-		c.add(nameBox);
-		c.add(exMonthLabel);
-		c.add(expMonthText);
-		c.add(exDateLabel);
-		c.add(expDateText);
-		c.add(exDateYear);
-		c.add(expYearText);
+		inventory = new ArrayList<Ingredient>();
 		
-		c.add(add);
-		c.add(clear);
+		c = getContentPane();	
 		
+		setSize(800, 500);
+				
+		JLabel headerTitle = new JLabel("IRON CHEF");
+		
+		JLabel name = new JLabel("Ingredient Name: ");
+		
+		JLabel exMonthLabel = new JLabel("Expiration Month: ");
+		
+		JLabel exDateLabel = new JLabel("Expiration Date: ");
+		
+		JLabel exDateYear = new JLabel("Expiration Year: ");
+				
+		JPanel header = new JPanel();
+		header.add(headerTitle);
+		header.setBorder(BorderFactory.createEmptyBorder(10, 5, 5, 5));
+		
+		JPanel centerPanel = new JPanel(new GridLayout(1, 2, 15, 15));
+		JPanel inventoryForm = new JPanel(new GridLayout(5, 2, 10, 10));
+		JPanel liveInventory = new JPanel();
+		JPanel bottomPanel = new JPanel(new BorderLayout(10, 10));
+		JPanel buttons = new JPanel();
+		
+		messages.setEditable(false);
+		
+		inventoryForm.add(name);
+		inventoryForm.add(nameBox);
+		inventoryForm.add(exMonthLabel);
+		inventoryForm.add(expMonthText);
+		inventoryForm.add(exDateLabel);
+		inventoryForm.add(expDateText);
+		inventoryForm.add(exDateYear);
+		inventoryForm.add(expYearText);
+		inventoryForm.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+		
+		
+		centerPanel.add(inventoryForm);
+		centerPanel.add(liveInventory);
+		centerPanel.setBorder(BorderFactory.createEmptyBorder(10, 15, 10, 10));
+		
+		buttons.add(add);
+		buttons.add(clear);
+		
+		bottomPanel.add(messagesScroll, BorderLayout.CENTER);
+		
+		bottomPanel.add(buttons, BorderLayout.SOUTH);
+		bottomPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+		
+		
+		
+		c.setLayout(new BorderLayout());
+		
+		c.add(header, BorderLayout.NORTH);
+		c.add(centerPanel, BorderLayout.CENTER);
+		c.add(bottomPanel, BorderLayout.SOUTH);
+				
 		add.addActionListener(this);
 		clear.addActionListener(this);
+		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setVisible(true);
 		
 	}
 	
@@ -73,12 +114,9 @@ public class IronChefApp extends JFrame implements ActionListener {
 			clearFields();
 			
 		}
+			
 		
-		
-		
-		
-		
-		System.out.println(inventory);
+		//System.out.println(inventory);
 		
 		
 	}
@@ -105,7 +143,6 @@ public class IronChefApp extends JFrame implements ActionListener {
 	
 		IronChefApp icApp = new IronChefApp();
 		
-		icApp.setVisible(true);
 		
 		//important objects
 		    //recipe
