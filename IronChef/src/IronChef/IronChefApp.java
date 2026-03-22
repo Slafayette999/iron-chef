@@ -4,7 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.event.ListSelectionListener;
 
 
 public class IronChefApp extends JFrame implements ActionListener {
@@ -81,6 +83,28 @@ public class IronChefApp extends JFrame implements ActionListener {
 		inventoryForm.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		
 		inventoryTable.setAutoCreateRowSorter(true);
+		
+		//creates an object to listen for selection changes
+		//valueChanged() is called whenever the selection changes (clicking a row in live inventory)
+		inventoryTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				if (!e.getValueIsAdjusting()) {
+					int viewRow = inventoryTable.getSelectedRow();
+					
+					if (viewRow != -1) {
+						int modelRow = inventoryTable.convertRowIndexToModel(viewRow);
+						
+						Ingredient ing = inventory.get(modelRow);
+						
+						nameBox.setText(ing.getName());
+						expMonthText.setText(ing.getExpMonth());
+						expDateText.setText(String.valueOf(ing.getExpDate()));
+						expYearText.setText(String.valueOf(ing.getExpYear()));
+					}
+				}
+			}
+		});
 		
 		liveInventory.setBorder(BorderFactory.createTitledBorder("Live Inventory"));
 		liveInventory.add(inventoryScroll, BorderLayout.CENTER);

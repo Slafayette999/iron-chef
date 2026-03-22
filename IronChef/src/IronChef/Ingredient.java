@@ -2,10 +2,10 @@ package IronChef;
 
 public class Ingredient {
 
-	String name;
-	String expMonth;
-	int expDate;
-	int expYear;
+	private String name;
+	private String expMonth;
+	private int expDate;
+	private int expYear;
 	
 	int quanity;
 	
@@ -16,6 +16,38 @@ public class Ingredient {
 		expYear = exYear;
 	}
 	
+	
+	public String getName() {
+		return name;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public String getExpMonth() {
+		return expMonth;
+	}
+	
+	public void setExpMonth(String expMonth) {
+		this.expMonth = expMonth;
+	}
+	
+	public int getExpDate() {
+		return expDate;
+	}
+	
+	public void setExpDate(int expDate) {
+		this.expDate = expDate;
+	}
+	
+	public int getExpYear() {
+		return expYear;
+	}
+	
+	public void setExpYear(int expYear) {
+		this.expYear = expYear;
+	}
 	
 	public String toString() {
 		
