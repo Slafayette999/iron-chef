@@ -5,9 +5,9 @@ Java application for managing kitchen inventory, ingredients and expiration date
 - Add an ingredient name
 - Enter expiration month
 - Enter expiration year
-- Store ingredient in an inventory list
+- Store ingredient in live inventory
+- Sort inventory in ascending/descending order
 - Clear input fields after adding an ingredient
-- Display added ingredients in the console
 
 ## Technologies Used
 - Java
@@ -19,11 +19,9 @@ This project is currently in early development. The current version focuses on b
 
 ## Planned Features
 - More attractive GUI
-- Display inventory directly in GUI
 - Validate user input
 - Remove ingredients from inventory
 - Search for ingredients
-- Sort ingredients by expiration date
 - Connect ingredients to recipe management features
 
 ## How to Run
