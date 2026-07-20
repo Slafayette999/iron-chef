@@ -1,5 +1,5 @@
 # iron-chef
-Java application for managing kitchen inventory, ingredients and expiration dates.
+Legacy Prototype: This repository contains the original Java implementation of Iron Chef, developed from a systems analysis project. The project has since evolved into a full-stack SaaS application.
 
 ## Current Features
 - Add an ingredient name
